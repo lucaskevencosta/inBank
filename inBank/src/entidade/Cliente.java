@@ -4,14 +4,20 @@ public class Cliente {
 	
 	private String nome;
 	
-	private String cpf;
+	private Integer cpf;
 	
 	private Double salLiquido;
 	
 	private int idade;
 	
-	
-	
+	public Cliente(String nome, Integer cpf, Double salLiquido, int idade) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.salLiquido = salLiquido;
+		this.idade = idade;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -20,11 +26,11 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public String getCpf() {
+	public Integer getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf(Integer cpf) {
 		this.cpf = cpf;
 	}
 
