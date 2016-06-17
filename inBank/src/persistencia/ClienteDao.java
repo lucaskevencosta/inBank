@@ -14,6 +14,8 @@ public class ClienteDao {
 	
 	List<Cliente> clientes = new ArrayList<Cliente>();
 	
+	Cliente cliente;
+	
 	public void salvar(Cliente c) {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -90,7 +92,7 @@ public class ClienteDao {
 					"jdbc:postgresql://127.0.0.1:5432/inbank", "postgres",
 					"123456");
 			
-			String sql = "SELECT * FROM cliente";
+			String sql = "SELECT * FROM cliente ORDER BY nome";
 			PreparedStatement instrucao = con.prepareStatement(sql);
 			
 			ResultSet rs = instrucao.executeQuery();
@@ -106,6 +108,35 @@ public class ClienteDao {
 			
 			return (ArrayList<Cliente>) clientes;
 		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Cliente localizarPorCPF(Integer cpf) {
+		try {
+			Class.forName("org.postgresql.Driver");
+			Connection con = DriverManager.getConnection(
+					"jdbc:postgresql://127.0.0.1:5432/inbank", "postgres",
+					"123456");
+			
+			String sql = "SELECT * FROM cliente WHERE cpf = ?";
+			PreparedStatement instrucao = con.prepareStatement(sql);
+			
+			instrucao.setInt(1, cpf);
+			
+			ResultSet rs = instrucao.executeQuery();
+			
+			rs.next();
+			cliente = new Cliente(rs.getString(2), rs.getInt(1), rs.getDouble(4), rs.getInt(3));
+			
+			rs.close();
+			instrucao.close();
+			con.close();
+			
+			return cliente;
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}

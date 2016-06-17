@@ -17,6 +17,10 @@ public class Cliente {
 		this.salLiquido = salLiquido;
 		this.idade = idade;
 	}
+	
+	public Cliente() {
+		super();
+	}
 
 	public String getNome() {
 		return nome;

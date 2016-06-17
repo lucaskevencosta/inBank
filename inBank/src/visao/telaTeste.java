@@ -3,6 +3,7 @@ package visao;
 import java.util.Scanner;
 
 import controle.ClienteControl;
+import controle.SimulacaoControl;
 
 public class telaTeste {
 
@@ -11,6 +12,8 @@ public class telaTeste {
 		Scanner ler = new Scanner(System.in);
 
 		ClienteControl clienteControl = new ClienteControl();
+		
+		SimulacaoControl simulacaoControl = new SimulacaoControl();
 
 		int menu;
 		Integer cpf;
@@ -23,9 +26,12 @@ public class telaTeste {
 		System.out.println("2 - Excluir cliente");
 		System.out.println("3 - Editar cliente");
 		System.out.println("4 - Listar clientes");
-
+		System.out.println("5 - Calcular Simulação");
+		
 		System.out.print("\nOpção: ");
 		menu = ler.nextInt();
+		
+		
 
 		switch (menu) {
 			case 1:
@@ -74,6 +80,19 @@ public class telaTeste {
 				
 				clienteControl.listarTodos();
 				break;
+				
+			case 5:
+				
+				Double pagamentos;
+				
+				System.out.print("Digite seu CPF: ");
+				cpf = ler.nextInt();
+				
+				System.out.print("Valor total gasto mensalmente com outros financiamentos: ");
+				pagamentos = ler.nextDouble();
+				
+				simulacaoControl.calcularPossiveisFinanciamentos(cpf, pagamentos);
+				
 				
 			default:
 				break;

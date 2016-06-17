@@ -38,4 +38,10 @@ public class ClienteControl {
 			System.out.println("Salário Líquido: " + clientes.get(i).getSalLiquido() + "\n\n");
 		}
 	}
+	
+	public Cliente localizarCliente(Integer cpf) {
+		cliente = new Cliente();
+		cliente = clienteDao.localizarPorCPF(cpf);
+		return cliente;
+	}
 }
